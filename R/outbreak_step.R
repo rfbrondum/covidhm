@@ -167,14 +167,13 @@ outbreak_step <- function(day, case_data, net = haslemere,
                                         R = R))
 
     #Each contact can only be infected once
-    new_cases <- new_cases[infected,] %>%
-      group_by(contact) %>%
-      sample_n(1)
+    if(any(infected)){
+      new_cases <- new_cases[infected,] %>%
+        group_by(contact) %>%
+        sample_n(1)
+    }
 
   }
-
-
-
 
 
 
